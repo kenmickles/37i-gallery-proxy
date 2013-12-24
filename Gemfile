@@ -5,3 +5,7 @@ gem 'sinatra'
 gem 'httparty'
 gem 'dalli'
 gem 'rack-cache'
+
+group :production do
+  gem "unicorn"
+end
