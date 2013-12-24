@@ -7,5 +7,5 @@ gem 'dalli'
 gem 'rack-cache'
 
 group :production do
-  gem "unicorn"
+  gem "thin"
 end
