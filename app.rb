@@ -2,12 +2,14 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'bundler'
 Bundler.require :default, (ENV["RACK_ENV"] || "development").to_sym
 
+# the s3 bucket to fetch content from
 set :host, 'http://gallery.37i.net.s3.amazonaws.com'
 
 before do
   cache_control :public, max_age: 2629746 # 1 month
 end
 
+# mess with the content of the web pages
 ['/', '*.html'].each do |path|
   get path do
     # map the root to main.php
@@ -67,6 +69,7 @@ end
   end
 end
 
+# forward static content along
 get '*.:format?' do
   redirect to "#{settings.host}#{request.fullpath}"
 end
